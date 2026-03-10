@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: notevault-api-dev
+  namespace: argocd # Namespace tempat ArgoCD terinstall
+spec:
+  project: default
+  source:
+    # URL repository config ini
+    repoURL: 'https://github.com/leeCode83/notevault-config.git'
+    targetRevision: HEAD
+    # Path ke folder manifest dev
+    path: enviroments/dev
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: notevault-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true # ArgoCD akan mencoba membuat namespace jika belum ada

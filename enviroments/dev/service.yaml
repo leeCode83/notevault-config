@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: notevault-api-service
+  namespace: notevault-dev
+spec:
+  # Selector digunakan utk mencari pod yg memiliki label app: notevault-api
+  selector:
+    app: notevault-api
+  ports:
+    - protocol: TCP
+      port: 80        # Port yang diekspos oleh service
+      targetPort: 8000 # Port aplikasi di dalam container
+      nodePort: 30001 # Port manual untuk diakses via browser (http://minikube-ip:30001)
+  # NodePort memudahkan akses di Minikube tanpa perlu LoadBalancer eksternal
+  type: NodePort

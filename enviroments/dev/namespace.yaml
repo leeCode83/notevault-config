@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  # Nama namespace untuk mengisolasi resource di lingkungan dev
+  name: notevault-dev
+  labels:
+    env: dev

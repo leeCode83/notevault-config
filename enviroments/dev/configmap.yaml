@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: notevault-api-config
+  namespace: notevault-dev
+data:
+  # URL untuk mengakses Supabase yang berjalan lokal di Docker Desktop/Minikube.
+  # "host.minikube.internal" memungkinkan pod di Minikube menghubungi host machine (laptop kamu).
+  # Port 54321 adalah default port untuk Kong (API Gateway) di local Supabase.
+  SUPABASE_URL: "http://host.minikube.internal:54321"

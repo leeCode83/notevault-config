@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: notevault-api-config
+  namespace: notevault-prod
+data:
+  # Ganti dengan URL Supabase production kamu (misal: Supabase Cloud URL)
+  SUPABASE_URL: "https://bhirugzhsstsyetlnnvs.supabase.co"

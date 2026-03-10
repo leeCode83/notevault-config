@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notevault-api-deployment
+  namespace: notevault-prod
+  labels:
+    app: notevault-api
+spec:
+  # 2 replica untuk High Availability di production
+  replicas: 2
+  selector:
+    matchLabels:
+      app: notevault-api
+  template:
+    metadata:
+      labels:
+        app: notevault-api
+    spec:
+      containers:
+      - name: api
+        image: leeCode83/notevault-api:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: SUPABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: notevault-api-config
+              key: SUPABASE_URL
+        - name: SUPABASE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: notevault-api-secret
+              key: SUPABASE_KEY
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "200m"
+          limits:
+            memory: "512Mi"
+            cpu: "1000m"

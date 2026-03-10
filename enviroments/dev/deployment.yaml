@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notevault-api-deployment
+  namespace: notevault-dev
+  labels:
+    app: notevault-api
+spec:
+  # Jumlah pod yang ingin dijalankan (untuk dev cukup 1)
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notevault-api
+  template:
+    metadata:
+      labels:
+        app: notevault-api
+    spec:
+      containers:
+      - name: api
+        image: leeCode83/notevault-api:latest # Ganti dengan image name kamu jika berbeda
+        ports:
+        - containerPort: 8000
+        # Mengambil env var dari ConfigMap dan Secret yang sudah dibuat sebelumnya
+        env:
+        - name: SUPABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: notevault-api-config
+              key: SUPABASE_URL
+        - name: SUPABASE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: notevault-api-secret
+              key: SUPABASE_KEY
+        # Resources membantu Kubernetes mengatur alokasi CPU/Memory
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
