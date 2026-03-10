@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: ghcr.io/leecode83/notevault-api:latest
+        image: ghcr.io/leecode83/notevault-api:sha-a2930fd
         ports:
         - containerPort: 8000
         env:
