@@ -9,8 +9,7 @@ spec:
     # URL repository config ini
     repoURL: 'https://github.com/leeCode83/notevault-config.git'
     targetRevision: HEAD
-    # Path ke folder manifest dev
-    path: enviroments/dev
+    path: environments/dev
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: notevault-dev
@@ -19,4 +18,4 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true # ArgoCD akan mencoba membuat namespace jika belum ada
+      - CreateNamespace=true

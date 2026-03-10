@@ -6,7 +6,6 @@ metadata:
   labels:
     app: notevault-api
 spec:
-  # 2 replica untuk High Availability di production
   replicas: 2
   selector:
     matchLabels:
@@ -18,7 +17,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: leeCode83/notevault-api:latest
+        image: lean83/notevault-api:v1
         ports:
         - containerPort: 8000
         env:

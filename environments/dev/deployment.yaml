@@ -18,10 +18,9 @@ spec:
     spec:
       containers:
       - name: api
-        image: leeCode83/notevault-api:latest # Ganti dengan image name kamu jika berbeda
+        image: ghcr.io/leecode83/notevault-api:latest
         ports:
         - containerPort: 8000
-        # Mengambil env var dari ConfigMap dan Secret yang sudah dibuat sebelumnya
         env:
         - name: SUPABASE_URL
           valueFrom:
